@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://drahrakfw5mx6"]
+
+[ext_resource type="Script" uid="uid://bbpmds5lfo5ft" path="res://scripts/collectible.gd" id="1_rwqht"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8cxyx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0mymv"]
+
+[node name="Coin" type="Area2D" unique_id=1874234981]
+script = ExtResource("1_rwqht")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1039978777]
+sprite_frames = SubResource("SpriteFrames_8cxyx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1477227563]
+shape = SubResource("CapsuleShape2D_0mymv")

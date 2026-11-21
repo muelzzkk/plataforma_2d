@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody2D
 
+
 const SPEED:int = 100
 const JUMP_VELOCITY:float = -300.0
 const ANIMATION_IDLE:String = "idle"
@@ -11,6 +12,34 @@ const MAX_JUMP_COUNT:int = 2
 
 var jump_count:int = 0
 
+var max_jumps: int = 1
+var has_double_jump_unlocked: bool = false
+var _double_jump_timer: float = 0.0
+
+
+func _process(delta: float) -> void:
+	if _double_jump_timer > 0.0:
+		_double_jump_timer -= delta
+		if _double_jump_timer <= 0.0:
+			_disable_temp_double_jump()
+
+
+func unlock_double_jump(duration: float = 10.0) -> void:
+	has_double_jump_unlocked = true
+	max_jumps = 2
+	jump_count = 0
+	if duration > 0.0:
+		_double_jump_timer = duration
+	else:
+		_double_jump_timer = 0.0
+
+
+func _disable_temp_double_jump() -> void:
+	has_double_jump_unlocked = false
+	max_jumps = 1
+	if jump_count > max_jumps:
+		jump_count = max_jumps
+
 
 
 func _physics_process(delta: float) -> void:
@@ -21,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		jump_count = 0
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or jump_count < MAX_JUMP_COUNT):
+	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or jump_count < max_jumps):
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
 
