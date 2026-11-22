@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://hdeno40odxgv"]
+
+[ext_resource type="Script" uid="uid://bbpmds5lfo5ft" path="res://scripts/collectible.gd" id="1_0ugvh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0mymv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0mymv"]
+
+[node name="DoubleJumpPowerUp" type="Area2D" unique_id=930772325]
+script = ExtResource("1_0ugvh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1326770177]
+sprite_frames = SubResource("SpriteFrames_0mymv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1147733190]
+shape = SubResource("CapsuleShape2D_0mymv")

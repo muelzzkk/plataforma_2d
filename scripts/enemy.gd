@@ -32,68 +32,68 @@ var _direction: float = 1.0
 
 
 func _ready() -> void:
-    _patrol_origin_x = global_position.x
+	_patrol_origin_x = global_position.x
 
-    damage_area.body_entered.connect(
-        _on_damage_area_body_entered
-    )
+	damage_area.body_entered.connect(
+		_on_damage_area_body_entered
+	)
 
-    animated_sprite.play("walk")
+	animated_sprite.play("walk")
 
 
 func _physics_process(delta: float) -> void:
 
-    # Aplica gravidade quando o inimigo está no ar.
-    if not is_on_floor():
-        velocity.y += get_gravity().y * delta
+	# Aplica gravidade quando o inimigo está no ar.
+	if not is_on_floor():
+		velocity.y += get_gravity().y * delta
 
-    # Verifica se existe chão na direção do movimento.
-    floor_check.position.x = 10.0 * _direction
-    floor_check.force_raycast_update()
+	# Verifica se existe chão na direção do movimento.
+	floor_check.position.x = 10.0 * _direction
+	floor_check.force_raycast_update()
 
-    # Verifica os limites da patrulha.
-    if global_position.x >= _patrol_origin_x + patrol_distance:
-        _direction = -1.0
+	# Verifica os limites da patrulha.
+	if global_position.x >= _patrol_origin_x + patrol_distance:
+		_direction = -1.0
 
-    elif global_position.x <= _patrol_origin_x - patrol_distance:
-        _direction = 1.0
+	elif global_position.x <= _patrol_origin_x - patrol_distance:
+		_direction = 1.0
 
-    # Verifica paredes e ausência de chão.
-    elif is_on_wall() or (
-        is_on_floor() and not floor_check.is_colliding()
-    ):
-        _direction *= -1.0
+	# Verifica paredes e ausência de chão.
+	elif is_on_wall() or (
+		is_on_floor() and not floor_check.is_colliding()
+	):
+		_direction *= -1.0
 
-    # Atualiza a velocidade horizontal.
-    velocity.x = move_speed * _direction
+	# Atualiza a velocidade horizontal.
+	velocity.x = move_speed * _direction
 
-    # Espelha o sprite conforme a direção.
-    animated_sprite.flip_h = _direction < 0.0
+	# Espelha o sprite conforme a direção.
+	animated_sprite.flip_h = _direction < 0.0
 
-    move_and_slide()
+	move_and_slide()
 
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
 
-    # Apenas o personagem do jogador pode receber dano.
-    if not body is Player:
-        return
+	# Apenas o personagem do jogador pode receber dano.
+	if not body is Player:
+		return
 
-    # Comunica o evento ao sistema externo de vida.
-    damage_requested.emit(body, damage_amount)
+	# Comunica o evento ao sistema externo de vida.
+	damage_requested.emit(body, damage_amount)
 
-    # Exibe o indicador visual.
-    _show_damage_number(body.global_position)
+	# Exibe o indicador visual.
+	_show_damage_number(body.global_position)
 
 
 func _show_damage_number(target_position: Vector2) -> void:
 
-    var damage_number := DAMAGE_NUMBER_SCENE.instantiate()
+	var damage_number := DAMAGE_NUMBER_SCENE.instantiate()
 
-    get_tree().current_scene.add_child(damage_number)
+	get_tree().current_scene.add_child(damage_number)
 
-    damage_number.global_position = (
-        target_position + Vector2(0.0, -12.0)
-    )
+	damage_number.global_position = (
+		target_position + Vector2(0.0, -12.0)
+	)
 
-    damage_number.call("set_damage", damage_amount)
+	damage_number.call("set_damage", damage_amount)
