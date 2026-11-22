@@ -139,9 +139,9 @@ As alterações devem respeitar a separação de responsabilidades entre os inte
 - [x] Indicador visual de dano.
 - [x] Comunicação do evento de dano por Signal.
 - [x] Integração com o sistema de vida.
-- [ ] Implementação de itens coletáveis.
+- [x] Implementação de itens coletáveis.
 - [x] Implementação do HUD.
-- [ ] Implementação de áudio.
+- [x] Implementação de áudio.
 
 ---
 
