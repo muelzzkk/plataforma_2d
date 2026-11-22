@@ -11,7 +11,18 @@ const MAX_JUMP_COUNT:int = 2
 
 var jump_count:int = 0
 
-
+var vida: int = 3
+var moedas: int = 0
+func receber_dano(dano: int) -> void:
+	vida -= dano
+	print("Vida atual: ", vida)
+	if vida <= 0:
+		print("O jogador Morreu!")
+		get_tree().call_deferred("reload_current_scene")
+		
+func adicionar_moedas(quantidade: int) -> void:
+	moedas += quantidade
+	print("Moedas coletadas: ", moedas)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -35,6 +46,8 @@ func _physics_process(delta: float) -> void:
 		
 	_update_animations(direction)
 	move_and_slide()
+	if global_position.y > 160:
+		receber_dano(vida)
 
 func _update_animations(direction:float) -> void:
 	
@@ -47,3 +60,8 @@ func _update_animations(direction:float) -> void:
 			animated.flip_h = direction < 0
 		else:
 			animated.play(ANIMATION_IDLE)
+
+
+func _on_enemy_damage_requested(target: Node, amount: int) -> void:
+	if target == self:
+		receber_dano(amount)
