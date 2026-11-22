@@ -1,16 +1,29 @@
 [gd_scene format=3 uid="uid://drahrakfw5mx6"]
 
 [ext_resource type="Script" uid="uid://bbpmds5lfo5ft" path="res://scripts/collectible.gd" id="1_rwqht"]
+[ext_resource type="Texture2D" uid="uid://0h0eusu4x63p" path="res://sprites/coin.png" id="2_i64fm"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8cxyx"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_i64fm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i64fm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0mymv"]
+radius = 6.0
+height = 12.0
 
 [node name="Coin" type="Area2D" unique_id=1874234981]
 script = ExtResource("1_rwqht")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1039978777]
-sprite_frames = SubResource("SpriteFrames_8cxyx")
+scale = Vector2(0.01, 0.01)
+sprite_frames = SubResource("SpriteFrames_i64fm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1477227563]
 shape = SubResource("CapsuleShape2D_0mymv")

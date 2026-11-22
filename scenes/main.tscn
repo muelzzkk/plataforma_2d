@@ -1,34 +1,104 @@
 [gd_scene format=4 uid="uid://dgfajtcw8k06f"]
 
-[ext_resource type="PackedScene" uid="uid://bqj8qvwi7b6yc" path="res://scenes/player.tscn" id="1_o5qli"]
-[ext_resource type="TileSet" uid="uid://dac3gbrn5wmrp" path="res://titles/ground.tres" id="2_tefeu"]
-[ext_resource type="TileSet" uid="uid://c7siwaxkcexja" path="res://titles/decoration.tres" id="3_sugp2"]
-[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="4_enemy"]
-[ext_resource type="Script" uid="uid://c3ajhyano3roi" path="res://scripts/hud.gd" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://bqj8qvwi7b6yc" path="res://scenes/player.tscn" id="1_xijx7"]
+[ext_resource type="TileSet" uid="uid://dac3gbrn5wmrp" path="res://titles/ground.tres" id="2_0afsd"]
+[ext_resource type="Texture2D" uid="uid://dchxpgq3w74ur" path="res://titles/2 - Autumn Forest/Background parts/6 - Distant_trees.png" id="3_bgcxa"]
+[ext_resource type="Texture2D" uid="uid://fn12qlkdfcgk" path="res://titles/2 - Autumn Forest/Background parts/5 - Tree_row_BG_2.png" id="4_yj5dr"]
+[ext_resource type="Texture2D" uid="uid://c2vvg7v0bcbwx" path="res://titles/2 - Autumn Forest/Background parts/4 - Tree_row_BG_1.png" id="5_xr56k"]
+[ext_resource type="Texture2D" uid="uid://btb7nliwl1atp" path="res://titles/2 - Autumn Forest/Background parts/3 - Bottom_leaf_piles.png" id="6_sek5r"]
+[ext_resource type="Texture2D" uid="uid://c3ywg31j267y6" path="res://titles/2 - Autumn Forest/Background parts/2 - Trees.png" id="7_i1yi8"]
+[ext_resource type="Texture2D" uid="uid://d0u4h2uygnkgy" path="res://titles/2 - Autumn Forest/Background parts/1 - Leaf_top.png" id="8_qm7rg"]
+[ext_resource type="TileSet" uid="uid://c7siwaxkcexja" path="res://titles/decoration.tres" id="9_0nboi"]
+[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="10_enemy"]
+[ext_resource type="Script" uid="uid://c3ajhyano3roi" path="res://scripts/hud.gd" id="11_hud"]
+[ext_resource type="PackedScene" uid="uid://drahrakfw5mx6" path="res://scenes/coin.tscn" id="12_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://c2havtnnlwb85" path="res://scenes/health_potion.tscn" id="13_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://hdeno40odxgv" path="res://scenes/double_jump_power_up.tscn" id="14_jbj1t"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="audio_main"]
+[ext_resource type="AudioStream" path="res://audio/background_music_sound.mp3" id="audio_BackgroundMusic"]
+[ext_resource type="AudioStream" path="res://audio/game_start.mp3" id="audio_StartSound"]
+[ext_resource type="AudioStream" path="res://audio/coin_sound.wav" id="audio_CoinSound"]
+[ext_resource type="AudioStream" path="res://audio/power_up_sound.mp3" id="audio_PowerUpSound"]
 
 [node name="Main" type="Node2D" unique_id=1778828340]
+script = ExtResource("audio_main")
 
-[node name="Player" parent="." unique_id=296629387 instance=ExtResource("1_o5qli")]
-position = Vector2(52, 43)
+[node name="Player" parent="." unique_id=296629387 instance=ExtResource("1_xijx7")]
+position = Vector2(36.063522, 146.49072)
 
-[node name="GroundTileMap" type="TileMapLayer" parent="." unique_id=422467807]
-tile_map_data = PackedByteArray("AAABAAcAAAAEAAEAAAACAAcAAAAEAAEAAAAEAAcAAAAEAAEAAAAGAAcAAAAEAAEAAAAFAAcAAAAEAAEAAAADAAcAAAAEAAEAAAAHAAcAAAAEAAEAAAAIAAcAAAAEAAEAAAAJAAcAAAAEAAEAAAAKAAcAAAAEAAEAAAALAAcAAAAEAAEAAAAMAAcAAAAEAAEAAAANAAcAAAAEAAEAAAAOAAcAAAAFAAEAAAAAAAcAAAADAAEAAAAAAAgAAAADAAIAAAAOAAgAAAAFAAIAAAABAAgAAAAEAAIAAAACAAgAAAAEAAIAAAADAAgAAAAEAAIAAAAEAAgAAAAEAAIAAAAFAAgAAAAEAAIAAAAGAAgAAAAEAAIAAAAHAAgAAAAEAAIAAAAIAAgAAAAEAAIAAAAJAAgAAAAEAAIAAAAKAAgAAAAEAAIAAAALAAgAAAAEAAIAAAAMAAgAAAAEAAIAAAANAAgAAAAEAAIAAAAFAAQAAAAEAAEAAAAGAAQAAAAEAAEAAAAHAAQAAAAEAAEAAAAIAAQAAAAEAAEAAAAJAAQAAAAEAAEAAAAEAAQAAAADAAEAAAAEAAUAAAADAAIAAAAEAAYAAAADAAIAAAAJAAUAAAAEAAIAAAAJAAYAAAAEAAIAAAAFAAYAAAAEAAIAAAAGAAYAAAAEAAIAAAAHAAYAAAAEAAIAAAAIAAYAAAAEAAIAAAAIAAUAAAAEAAIAAAAHAAUAAAAEAAIAAAAGAAUAAAAEAAIAAAAFAAUAAAAEAAIAAAAKAAQAAAAEAAEAAAALAAQAAAAFAAEAAAAKAAUAAAAEAAIAAAAKAAYAAAAEAAIAAAALAAUAAAAFAAIAAAALAAYAAAAFAAIAAAAHAAMAAAADAAIAAAAHAAIAAAADAAIAAAAHAAEAAAADAAEAAAAIAAEAAAAEAAEAAAAJAAEAAAAFAAEAAAAIAAMAAAAEAAIAAAAIAAIAAAAEAAIAAAAJAAMAAAAFAAIAAAAJAAIAAAAFAAIAAAASAAcAAAADAAEAAAATAAcAAAAEAAEAAAAUAAcAAAAEAAEAAAAVAAcAAAAEAAEAAAAWAAcAAAAEAAEAAAAXAAcAAAAEAAEAAAAYAAcAAAAEAAEAAAAZAAcAAAAEAAEAAAAaAAcAAAAEAAEAAAAbAAcAAAAEAAEAAAAcAAcAAAAEAAEAAAASAAgAAAADAAIAAAATAAgAAAAEAAIAAAAUAAgAAAAEAAIAAAAVAAgAAAAEAAIAAAAWAAgAAAAEAAIAAAAXAAgAAAAEAAIAAAAYAAgAAAAEAAIAAAAZAAgAAAAEAAIAAAAaAAgAAAAEAAIAAAAbAAgAAAAEAAIAAAAcAAgAAAAEAAIAAAAdAAgAAAAEAAIAAAAdAAcAAAAEAAEAAAAVAAYAAAADAAIAAAAVAAUAAAADAAIAAAAVAAQAAAADAAEAAAAWAAQAAAAEAAEAAAAXAAQAAAAFAAEAAAAWAAUAAAAEAAIAAAAWAAYAAAAEAAIAAAAXAAUAAAAFAAIAAAAXAAYAAAAFAAIAAAAeAAcAAAAEAAEAAAAfAAcAAAAEAAEAAAAgAAcAAAAEAAEAAAAhAAcAAAAEAAEAAAAiAAcAAAAEAAEAAAAjAAcAAAAEAAEAAAAkAAcAAAAEAAEAAAAlAAcAAAAEAAEAAAAmAAcAAAAEAAEAAAAeAAgAAAAEAAIAAAAfAAgAAAAEAAIAAAAgAAgAAAAEAAIAAAAhAAgAAAAEAAIAAAAiAAgAAAAEAAIAAAAjAAgAAAAEAAIAAAAkAAgAAAAEAAIAAAAlAAgAAAAEAAIAAAAmAAgAAAAEAAIAAAAnAAgAAAAFAAIAAAAnAAcAAAAFAAEAAAA=")
-tile_set = ExtResource("2_tefeu")
+[node name="GroundTileMap" type="TileMapLayer" parent="." unique_id=591544893]
+position = Vector2(0, 1)
+tile_map_data = PackedByteArray("AAABAAoAAQADAAEAAAACAAoAAQAEAAEAAAADAAoAAQAEAAEAAAAEAAoAAQAEAAEAAAAFAAoAAQAEAAEAAAAGAAoAAQAEAAEAAAAHAAoAAQAEAAEAAAAIAAoAAQAEAAEAAAAJAAoAAQAEAAEAAAAKAAoAAQAEAAEAAAALAAoAAQAEAAEAAAAMAAoAAQAEAAEAAAANAAoAAQAEAAEAAAAOAAoAAQAEAAEAAAAPAAoAAQAEAAEAAAABAAsAAQADAAIAAAABAAwAAQADAAIAAAACAAwAAQAEAAIAAAADAAwAAQAEAAIAAAAEAAwAAQAEAAIAAAAFAAwAAQAEAAIAAAAGAAwAAQAEAAIAAAAHAAwAAQAEAAIAAAAIAAwAAQAEAAIAAAAJAAwAAQAEAAIAAAAKAAwAAQAEAAIAAAALAAwAAQAEAAIAAAAMAAwAAQAEAAIAAAANAAwAAQAEAAIAAAAOAAwAAQAEAAIAAAAOAAsAAQAEAAIAAAANAAsAAQAEAAIAAAAMAAsAAQAEAAIAAAALAAsAAQAEAAIAAAAKAAsAAQAEAAIAAAAJAAsAAQAEAAIAAAAIAAsAAQAEAAIAAAAHAAsAAQAEAAIAAAAGAAsAAQAEAAIAAAAFAAsAAQAEAAIAAAAEAAsAAQAEAAIAAAADAAsAAQAEAAIAAAACAAsAAQAEAAIAAAAPAAwAAQAEAAIAAAAPAAsAAQAEAAIAAAAQAAoAAQAFAAEAAAAQAAwAAQAFAAIAAAAQAAsAAQAFAAIAAAAUAAoAAQAEAAEAAAAVAAoAAQAEAAEAAAAWAAoAAQAEAAEAAAAXAAoAAQAEAAEAAAAYAAoAAQAEAAEAAAAZAAoAAQAEAAEAAAAaAAoAAQAEAAEAAAAbAAoAAQAEAAEAAAAcAAoAAQAEAAEAAAAdAAoAAQAEAAEAAAAeAAoAAQAEAAEAAAAfAAoAAQAEAAEAAAATAAoAAQADAAEAAAAgAAoAAQAFAAEAAAAUAAsAAQAEAAIAAAAUAAwAAQAEAAIAAAAVAAwAAQAEAAIAAAAWAAwAAQAEAAIAAAAXAAwAAQAEAAIAAAAYAAwAAQAEAAIAAAAZAAwAAQAEAAIAAAAaAAwAAQAEAAIAAAAbAAwAAQAEAAIAAAAcAAwAAQAEAAIAAAAdAAwAAQAEAAIAAAAeAAwAAQAEAAIAAAAfAAwAAQAEAAIAAAAfAAsAAQAEAAIAAAAeAAsAAQAEAAIAAAAdAAsAAQAEAAIAAAAcAAsAAQAEAAIAAAAbAAsAAQAEAAIAAAAaAAsAAQAEAAIAAAAZAAsAAQAEAAIAAAAYAAsAAQAEAAIAAAAXAAsAAQAEAAIAAAAWAAsAAQAEAAIAAAAVAAsAAQAEAAIAAAATAAwAAQADAAIAAAATAAsAAQADAAIAAAAgAAwAAQAFAAIAAAAgAAsAAQAFAAIAAAAGAAkAAQADAAIAAAAGAAgAAQADAAIAAAAGAAcAAQADAAEAAAAHAAcAAQAEAAEAAAAIAAcAAQAEAAEAAAAHAAkAAQAEAAIAAAAHAAgAAQAEAAIAAAAIAAkAAQAEAAIAAAAIAAgAAQAEAAIAAAAHAAYAAQADAAIAAAAHAAUAAQADAAIAAAAHAAQAAQADAAEAAAAIAAQAAQAEAAEAAAAIAAYAAQAEAAIAAAAIAAUAAQAEAAIAAAAJAAcAAQAFAAEAAAAJAAkAAQAFAAIAAAAJAAgAAQAFAAIAAAAJAAQAAQAFAAEAAAAJAAUAAQAFAAIAAAAJAAYAAQAFAAIAAAAMAAYAAQAPAAMAAAAPAAYAAQAPAAMAAAASAAYAAQAPAAMAAAAWAAYAAQAPAAMAAAA=")
+tile_set = ExtResource("2_0afsd")
 
-[node name="DecorationTileMap" type="TileMapLayer" parent="." unique_id=1157597610]
-tile_map_data = PackedByteArray("AAANAAYAAAADAAUAAAADAAYAAAABAAUAAAACAAYAAAABAAUAAAABAAYAAAABAAUAAAASAAYAAAAFAAUAAAATAAYAAAAGAAUAAAAUAAYAAAAHAAUAAAAaAAUAAAABAAEAAAAIAP//AAAFAAEAAAAWAAIAAAAJAAEAAAALAAMAAAABAAUAAAAKAAMAAAABAAUAAAAYAAYAAAABAAUAAAAFAAMAAAAFAAUAAAAGAAMAAAAFAAUAAAAhAAQAAwAAAAAAAAAPAAgAAQAMAAUAAAAQAAgAAQAMAAUAAAARAAgAAQAMAAUAAAASAAgAAQAMAAUAAAATAAgAAQAMAAUAAAAUAAgAAQAMAAUAAAAVAAgAAQAMAAUAAAAWAAgAAQAMAAUAAAAXAAgAAQAMAAUAAAAYAAgAAQAMAAUAAAAZAAgAAQAMAAUAAAAaAAgAAQAMAAUAAAAbAAgAAQAMAAUAAAAcAAgAAQAMAAUAAAAdAAgAAQAMAAUAAAAeAAgAAQAMAAUAAAAfAAgAAQAMAAUAAAAgAAgAAQAMAAUAAAAhAAgAAQAMAAUAAAAiAAgAAQAMAAUAAAAjAAgAAQAMAAUAAAAkAAgAAQAMAAUAAAAlAAgAAQAMAAUAAAAmAAgAAQAMAAUAAAAnAAgAAQAMAAUAAAAoAAgAAQAMAAUAAAAOAAgAAQAMAAUAAAANAAgAAQAMAAUAAAAMAAgAAQAMAAUAAAALAAgAAQAMAAUAAAAKAAgAAQAMAAUAAAAJAAgAAQAMAAUAAAAIAAgAAQAMAAUAAAAHAAgAAQAMAAUAAAAGAAgAAQAMAAUAAAAFAAgAAQAMAAUAAAAEAAgAAQAMAAUAAAADAAgAAQAMAAUAAAACAAgAAQAMAAUAAAABAAgAAQAMAAUAAAAAAAgAAQAMAAUAAAD//wgAAQAMAAUAAAD+/wgAAQAMAAUAAAD9/wgAAQAMAAUAAAD8/wgAAQAMAAUAAAAUAAsAAQAMAAYAAAAUAAoAAQAMAAYAAAAUAAkAAQAMAAYAAAATAAkAAQAMAAYAAAASAAkAAQAMAAYAAAARAAkAAQAMAAYAAAAQAAkAAQAMAAYAAAAPAAkAAQAMAAYAAAAOAAkAAQAMAAYAAAANAAkAAQAMAAYAAAAMAAkAAQAMAAYAAAALAAkAAQAMAAYAAAAKAAkAAQAMAAYAAAAJAAkAAQAMAAYAAAAIAAkAAQAMAAYAAAAHAAkAAQAMAAYAAAAGAAkAAQAMAAYAAAAFAAkAAQAMAAYAAAAEAAkAAQAMAAYAAAADAAkAAQAMAAYAAAACAAkAAQAMAAYAAAABAAkAAQAMAAYAAAAAAAkAAQAMAAYAAAD//wkAAQAMAAYAAAD+/wkAAQAMAAYAAAD9/wkAAQAMAAYAAAD8/wkAAQAMAAYAAAD8/woAAQAMAAYAAAD8/wsAAQAMAAYAAAD9/wsAAQAMAAYAAAD9/woAAQAMAAYAAAD+/woAAQAMAAYAAAD+/wsAAQAMAAYAAAD//wsAAQAMAAYAAAD//woAAQAMAAYAAAAAAAoAAQAMAAYAAAAAAAsAAQAMAAYAAAABAAsAAQAMAAYAAAABAAoAAQAMAAYAAAACAAoAAQAMAAYAAAACAAsAAQAMAAYAAAADAAsAAQAMAAYAAAADAAoAAQAMAAYAAAAEAAoAAQAMAAYAAAAEAAsAAQAMAAYAAAAFAAsAAQAMAAYAAAAFAAoAAQAMAAYAAAAGAAoAAQAMAAYAAAAGAAsAAQAMAAYAAAAHAAsAAQAMAAYAAAAHAAoAAQAMAAYAAAAIAAoAAQAMAAYAAAAIAAsAAQAMAAYAAAAJAAsAAQAMAAYAAAAJAAoAAQAMAAYAAAAKAAoAAQAMAAYAAAAKAAsAAQAMAAYAAAALAAsAAQAMAAYAAAALAAoAAQAMAAYAAAAMAAoAAQAMAAYAAAAMAAsAAQAMAAYAAAANAAsAAQAMAAYAAAANAAoAAQAMAAYAAAAOAAoAAQAMAAYAAAAOAAsAAQAMAAYAAAAPAAsAAQAMAAYAAAAPAAoAAQAMAAYAAAAQAAoAAQAMAAYAAAAQAAsAAQAMAAYAAAARAAsAAQAMAAYAAAARAAoAAQAMAAYAAAASAAoAAQAMAAYAAAASAAsAAQAMAAYAAAATAAsAAQAMAAYAAAATAAoAAQAMAAYAAAAVAAkAAQAMAAYAAAAVAAoAAQAMAAYAAAAVAAsAAQAMAAYAAAAWAAsAAQAMAAYAAAAWAAoAAQAMAAYAAAAWAAkAAQAMAAYAAAAXAAkAAQAMAAYAAAAXAAoAAQAMAAYAAAAXAAsAAQAMAAYAAAAYAAsAAQAMAAYAAAAYAAoAAQAMAAYAAAAYAAkAAQAMAAYAAAAZAAkAAQAMAAYAAAAZAAoAAQAMAAYAAAAZAAsAAQAMAAYAAAAaAAsAAQAMAAYAAAAaAAoAAQAMAAYAAAAaAAkAAQAMAAYAAAAbAAkAAQAMAAYAAAAbAAoAAQAMAAYAAAAbAAsAAQAMAAYAAAAcAAsAAQAMAAYAAAAcAAoAAQAMAAYAAAAcAAkAAQAMAAYAAAAdAAkAAQAMAAYAAAAdAAoAAQAMAAYAAAAdAAsAAQAMAAYAAAAeAAsAAQAMAAYAAAAeAAoAAQAMAAYAAAAeAAkAAQAMAAYAAAAfAAkAAQAMAAYAAAAfAAoAAQAMAAYAAAAfAAsAAQAMAAYAAAAgAAsAAQAMAAYAAAAgAAoAAQAMAAYAAAAgAAkAAQAMAAYAAAAhAAkAAQAMAAYAAAAhAAoAAQAMAAYAAAAhAAsAAQAMAAYAAAAiAAsAAQAMAAYAAAAiAAoAAQAMAAYAAAAiAAkAAQAMAAYAAAAjAAkAAQAMAAYAAAAjAAoAAQAMAAYAAAAjAAsAAQAMAAYAAAAkAAsAAQAMAAYAAAAkAAoAAQAMAAYAAAAkAAkAAQAMAAYAAAAlAAkAAQAMAAYAAAAlAAoAAQAMAAYAAAAlAAsAAQAMAAYAAAAmAAsAAQAMAAYAAAAmAAoAAQAMAAYAAAAmAAkAAQAMAAYAAAAnAAkAAQAMAAYAAAAnAAoAAQAMAAYAAAAnAAsAAQAMAAYAAAAoAAsAAQAMAAYAAAAoAAoAAQAMAAYAAAAoAAkAAQAMAAYAAAA=")
-tile_set = ExtResource("3_sugp2")
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1297726892]
+
+[node name="6" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1485251744]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/6" unique_id=1601434080]
+texture = ExtResource("3_bgcxa")
+centered = false
+
+[node name="5" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1934146819]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/5" unique_id=771460509]
+texture = ExtResource("4_yj5dr")
+centered = false
+
+[node name="4" type="ParallaxLayer" parent="ParallaxBackground" unique_id=201755677]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/4" unique_id=93673433]
+texture = ExtResource("5_xr56k")
+centered = false
+
+[node name="3" type="ParallaxLayer" parent="ParallaxBackground" unique_id=78536130]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/3" unique_id=1577377387]
+texture = ExtResource("6_sek5r")
+centered = false
+
+[node name="2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1140579785]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/2" unique_id=1672645654]
+texture = ExtResource("7_i1yi8")
+centered = false
+
+[node name="1" type="ParallaxLayer" parent="ParallaxBackground" unique_id=85370738]
+motion_scale = Vector2(1.1, 1.1)
+motion_mirroring = Vector2(288, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/1" unique_id=313428388]
+texture = ExtResource("8_qm7rg")
+centered = false
+
+[node name="DecorationTileMap" type="TileMapLayer" parent="." unique_id=974500104]
+tile_map_data = PackedByteArray("AAAMAAkAAAADAAUAAAAIAAIAAAAFAAEAAAAOAAkAAAABAAUAAAANAAkAAAABAAUAAAA=")
+tile_set = ExtResource("9_0nboi")
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1006850643]
 
-[node name="Enemy" parent="Enemies" unique_id=1141481712 instance=ExtResource("4_enemy")]
+[node name="Enemy" parent="Enemies" unique_id=1141481712 instance=ExtResource("10_enemy")]
 position = Vector2(128, 96)
 
-[node name="Enemy2" parent="Enemies" unique_id=633929579 instance=ExtResource("4_enemy")]
+[node name="Enemy2" parent="Enemies" unique_id=633929579 instance=ExtResource("10_enemy")]
 position = Vector2(224, 96)
 
+[node name="Enemy3" parent="Enemies" unique_id=1617659272 instance=ExtResource("10_enemy")]
+position = Vector2(446, 148)
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=130743115]
-script = ExtResource("5_tbgi4")
+script = ExtResource("11_hud")
 
 [node name="VidaLabel" type="Label" parent="HUD" unique_id=411924608]
 offset_left = 8.0
@@ -44,5 +114,44 @@ offset_right = 276.0
 offset_bottom = 31.0
 text = "MOEDAS: 0"
 
+[node name="Collectibles" type="Node2D" parent="." unique_id=808095472]
+
+[node name="Coin" parent="Collectibles" unique_id=1874234981 instance=ExtResource("12_a8y0u")]
+position = Vector2(356, 154)
+
+[node name="HealthPotion" parent="Collectibles" unique_id=1535277923 instance=ExtResource("13_jkv2x")]
+position = Vector2(126, 59)
+item_type = 1
+
+[node name="DoubleJumpPowerUp" parent="Collectibles" unique_id=930772325 instance=ExtResource("14_jbj1t")]
+position = Vector2(248, 91)
+item_type = 2
+
+[node name="Coin2" parent="Collectibles" unique_id=437029594 instance=ExtResource("12_a8y0u")]
+position = Vector2(117, 153)
+
+[node name="Coin3" parent="Collectibles" unique_id=2014591409 instance=ExtResource("12_a8y0u")]
+position = Vector2(176, 155)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_BackgroundMusic")
+volume_db = -16.0
+
+[node name="StartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_StartSound")
+autoplay = true
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_CoinSound")
+
+[node name="PowerUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("audio_PowerUpSound")
+
 [connection signal="damage_requested" from="Enemies/Enemy" to="Player" method="_on_enemy_damage_requested"]
 [connection signal="damage_requested" from="Enemies/Enemy2" to="Player" method="_on_enemy_damage_requested"]
+[connection signal="collected" from="Collectibles/Coin" to="." method="_on_item_collected"]
+[connection signal="collected" from="Collectibles/HealthPotion" to="." method="_on_item_collected"]
+[connection signal="collected" from="Collectibles/DoubleJumpPowerUp" to="." method="_on_item_collected"]
+[connection signal="collected" from="Collectibles/Coin2" to="." method="_on_item_collected"]
+[connection signal="collected" from="Collectibles/Coin3" to="." method="_on_item_collected"]
+[connection signal="died" from="Player" to="." method="_on_player_died"]

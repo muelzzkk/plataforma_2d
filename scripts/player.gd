@@ -1,14 +1,17 @@
 class_name Player extends CharacterBody2D
 
+signal died
+
 const SPEED: int = 100
 const JUMP_VELOCITY: float = -300.0
 const ANIMATION_IDLE: String = "idle"
 const ANIMATION_WALK: String = "walk"
 const ANIMATION_JUMP: String = "jump"
-
+const VIDA_MAXIMA: int = 3
 @onready var animated: AnimatedSprite2D = %AnimatedSprite2D
 
-var vida: int = 3
+
+var vida: int = VIDA_MAXIMA
 var moedas: int = 0
 var jump_count: int = 0
 var max_jumps: int = 1
@@ -25,13 +28,22 @@ func receber_dano(dano: int) -> void:
 
 	if vida <= 0:
 		print("O jogador morreu!")
+		set_physics_process(false)
+		died.emit()
+		$GameOverSound.play()
+		await $GameOverSound.finished
 		get_tree().call_deferred("reload_current_scene")
+	else:
+		$HitSound.play()
 
 
 func adicionar_moedas(quantidade: int) -> void:
 	moedas += quantidade
 	print("Moedas coletadas: ", moedas)
 
+func recuperar_vida(quantidade: int) -> void:
+	if vida > 0:
+		vida = mini(vida + quantidade, VIDA_MAXIMA)
 
 func _process(delta: float) -> void:
 	if _double_jump_timer > 0.0:
@@ -62,6 +74,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and jump_count < max_jumps:
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
+		$JumpSound.play()
 
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:

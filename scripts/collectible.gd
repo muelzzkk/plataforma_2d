@@ -54,12 +54,13 @@ func _on_body_entered(body: Node2D) -> void:
 
 	match item_type:
 		ItemType.COIN:
+			player.adicionar_moedas(value)
 			coin_collected.emit(value)
 		ItemType.HEAL:
+			player.recuperar_vida(value)
 			heal_requested.emit(player, value)
 		ItemType.DOUBLE_JUMP:
-			if player.has_method("unlock_double_jump"):
-				player.unlock_double_jump(powerup_duration)
+			player.unlock_double_jump(powerup_duration)
 			double_jump_granted.emit(player, powerup_duration)
 
 	collected.emit(item_type, value, player)

@@ -1,15 +1,28 @@
 [gd_scene format=3 uid="uid://c2havtnnlwb85"]
 
 [ext_resource type="Script" uid="uid://bbpmds5lfo5ft" path="res://scripts/collectible.gd" id="1_1dg5g"]
+[ext_resource type="Texture2D" uid="uid://crye52jw1ud1l" path="res://sprites/health_potion.png" id="2_np0hw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0mymv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_np0hw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0mymv"]
+radius = 4.0
+height = 12.0
 
 [node name="HealthPotion" type="Area2D" unique_id=1535277923]
 script = ExtResource("1_1dg5g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1505834505]
+scale = Vector2(0.01, 0.01)
 sprite_frames = SubResource("SpriteFrames_0mymv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1189640953]
