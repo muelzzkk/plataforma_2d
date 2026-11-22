@@ -1,150 +1,162 @@
 # 🐧 Plataforma 2D
 
-Projeto de um jogo de plataforma 2D desenvolvido na **Godot Engine**, utilizando GDScript e recursos de pixel art.
+Jogo de plataforma 2D desenvolvido em equipe com **Godot Engine 4.7** e
+**GDScript**, como projeto acadêmico da disciplina de **Desenvolvimento
+de Jogos**.
 
-O jogo possui um personagem controlável, cenários construídos com TileMap e uma estrutura preparada para a implementação de novas mecânicas e fases.
+O projeto reúne mecânicas de plataforma, inimigos, itens coletáveis,
+sistema de vida, HUD e áudio. Seu objetivo é aplicar os conteúdos
+estudados na disciplina por meio da construção colaborativa de um jogo
+funcional.
 
-## 🎮 Tecnologias utilizadas
+## 🎮 Funcionalidades
 
-- Godot Engine 4.7
-- GDScript
-- Pixel Art
-- CharacterBody2D
-- AnimatedSprite2D
-- Area2D
-- RayCast2D
-- TileMapLayer
+-   **Personagem jogável:** movimentação horizontal, salto e animações.
+-   **Sistema de vida:** o personagem possui vida limitada, recebe dano
+    ao tocar inimigos e ao cair em áreas abaixo do cenário; ao perder
+    toda a vida, ocorre a condição de morte e a cena é reiniciada.
+-   **Inimigos:** inimigos do tipo Skeleton com movimentação horizontal,
+    patrulhamento, detecção de paredes e bordas e colisão com o jogador.
+-   **Indicador de dano:** exibição de um número flutuante que sobe e
+    desaparece após o contato com um inimigo.
+-   **Itens coletáveis:**
+    -   Moedas, contabilizadas pelo jogador.
+    -   Poção de vida, que recupera vida respeitando o limite máximo.
+    -   Power-up de salto duplo, que libera temporariamente um segundo
+        salto.
+-   **HUD:** exibição da vida e da quantidade de moedas.
+-   **Áudio:** música de fundo e efeitos sonoros associados a ações como
+    pular, receber dano, coletar moedas, obter power-ups e game over.
+
+## 🕹️ Controles
+
+  Tecla            Ação
+  ---------------- -------------------------
+  ← / →            Movimentar o personagem
+  Espaço / Enter   Pular
+
+O salto duplo fica disponível temporariamente após coletar o power-up
+correspondente.
+
+## 🧰 Tecnologias e recursos
+
+-   Godot Engine 4.7
+-   GDScript
+-   Pixel Art
+-   `CharacterBody2D`
+-   `AnimatedSprite2D`
+-   `Area2D`
+-   `RayCast2D`
+-   `TileMapLayer`
+-   `AudioStreamPlayer`
 
 ## 📁 Estrutura do projeto
 
-```text
-plataforma_2d-main/
-│
+``` text
+plataforma_2d/
+├── audio/
+│   ├── background_music_sound.mp3
+│   ├── coin_sound.wav
+│   ├── game_over_sound.mp3
+│   ├── game_start.mp3
+│   ├── hit_sound.mp3
+│   ├── jump_sound.mp3
+│   └── power_up_sound.mp3
 ├── scenes/
-│   ├── main.tscn
-│   ├── forest.tscn
-│   ├── player.tscn
+│   ├── coin.tscn
+│   ├── damage_number.tscn
+│   ├── double_jump_power_up.tscn
 │   ├── enemy.tscn
-│   └── damage_number.tscn
-│
+│   ├── forest.tscn
+│   ├── health_potion.tscn
+│   ├── main.tscn
+│   └── player.tscn
 ├── scripts/
-│   ├── player.gd
+│   ├── collectible.gd
+│   ├── damage_number.gd
 │   ├── enemy.gd
-│   └── damage_number.gd
-│
+│   ├── hud.gd
+│   ├── main.gd
+│   └── player.gd
 ├── sprites/
 │   ├── 1 - Penguin/
 │   ├── 2 - Fairy/
 │   ├── 3 - Skeleton/
-│   └── ...
-│
+│   ├── 4 - Orange/
+│   ├── coin.png
+│   ├── health_potion.png
+│   └── jump.png
 ├── titles/
-│   ├── ground.tres
-│   └── decoration.tres
-│
-├── docs/
-│   └── INTEGRACAO_INIMIGOS.md
-│
-├── project.godot
-└── README.md
+│   ├── 1 - Grassland/
+│   ├── 2 - Autumn Forest/
+│   ├── 3 - Tropics/
+│   ├── 4 - Winter World/
+│   ├── 5 - Misc. universal tiles/
+│   ├── decoration.tres
+│   └── ground.tres
+├── icon.svg
+└── project.godot
 ```
 
-## 🕹️ Controles
+## 🚀 Como executar
 
-| Tecla | Ação |
-|---|---|
-| ← | Movimentar para a esquerda |
-| → | Movimentar para a direita |
-| Espaço / Enter | Pular |
+### Pré-requisito
 
-Os controles utilizam as ações padrão do Input Map da Godot (`ui_left`, `ui_right` e `ui_accept`).
-
-## 👾 Sistema de inimigos
-
-Foi implementado um inimigo do tipo Skeleton, utilizando sprites que já estavam disponíveis nos recursos originais do projeto.
-
-### Funcionalidades
-
-- Movimentação horizontal automática.
-- Patrulhamento com limites configuráveis.
-- Detecção de paredes e ausência de chão.
-- Animação de caminhada.
-- Detecção de contato com o jogador.
-- Comunicação de eventos de dano por meio de Signals.
-
-### Indicador visual de dano
-
-Quando o jogador entra em contato com um inimigo, é criado um indicador numérico que apresenta a quantidade de dano recebido.
-
-O indicador possui:
-- Texto numérico vermelho.
-- Movimento vertical suave.
-- Animação de desaparecimento.
-- Remoção automática após a animação.
-
-### Organização técnica
-
-O sistema utiliza cenas independentes e reutilizáveis:
-
-- `enemy.tscn`: representa o inimigo.
-- `enemy.gd`: controla movimentação, patrulha e detecção de contato.
-- `damage_number.tscn`: representa o indicador de dano.
-- `damage_number.gd`: controla a animação do indicador.
-
-Os inimigos são instanciados na cena principal, permitindo reutilização em outras fases.
-
-## 🔗 Integração com o sistema de vida
-
-O inimigo disponibiliza o sinal:
-
-```gdscript
-signal damage_requested(target: Node, amount: int)
-```
-
-Esse sinal comunica o personagem atingido e a quantidade de dano solicitada.
-
-A redução efetiva da vida deverá ser conectada ao sistema de vida desenvolvido separadamente.
-
-Essa abordagem mantém a responsabilidade do inimigo independente da implementação de vida e morte do jogador.
-
-## 🚀 Como executar o projeto
-
-1. Instale a Godot Engine 4.7.
-2. Clone este repositório.
-3. Abra a Godot Engine.
-4. Importe o projeto selecionando o arquivo `project.godot`.
-5. Aguarde a importação dos recursos.
-6. Execute o projeto pressionando `F5`.
+-   Godot Engine 4.7.
 
 ### Clonar o repositório
 
-```bash
-git clone URL_DO_REPOSITORIO
+``` bash
+git clone https://github.com/muelzzkk/plataforma_2d.git
 ```
 
-## 🛠️ Desenvolvimento
+### Abrir o projeto
 
-O projeto está organizado em cenas e scripts independentes, buscando facilitar a manutenção, reutilização de componentes e implementação de novas funcionalidades.
+1.  Abra a Godot Engine.
+2.  Na tela do Gerenciador de Projetos, selecione **Importar**.
+3.  Localize o arquivo `project.godot` na pasta clonada.
+4.  Importe e abra o projeto.
+5.  Execute a cena principal com `F5`.
 
-As alterações devem respeitar a separação de responsabilidades entre os integrantes da equipe.
+## 👥 Equipe de desenvolvimento
 
-## 📌 Status do desenvolvimento
+Projeto desenvolvido colaborativamente por:
 
-- [x] Estrutura inicial do jogo.
-- [x] Personagem jogável.
-- [x] Animações do personagem.
-- [x] Cena de inimigo Skeleton.
-- [x] Movimentação e patrulhamento dos inimigos.
-- [x] Detecção de contato com o jogador.
-- [x] Indicador visual de dano.
-- [x] Comunicação do evento de dano por Signal.
-- [x] Integração com o sistema de vida.
-- [x] Implementação de itens coletáveis.
-- [x] Implementação do HUD.
-- [x] Implementação de áudio.
+  --------------------------------------------------------------------------------------------
+  Integrante                          Perfil no GitHub
+  ----------------------------------- --------------------------------------------------------
+  Samuel Freitas                      [@muelzzkk](https://github.com/muelzzkk)
 
----
+  Emilly Vitória                      [@EmillyDelf](https://github.com/EmillyDelf)
 
-**Projeto acadêmico — Desenvolvimento de Jogos 2D**
+  John Harrison                       [@JohnHarrison-br](https://github.com/JohnHarrison-br)
 
-Desenvolvido em equipe utilizando Godot Engine e GDScript.
+  Marco Antonio                       [@MarcoZueiroBR](https://github.com/MarcoZueiroBR)
+  --------------------------------------------------------------------------------------------
+
+## 🎓 Natureza acadêmica e uso
+
+Este projeto foi desenvolvido **exclusivamente para fins acadêmicos e
+educacionais**, como atividade prática de aprendizado da equipe na
+disciplina de **Desenvolvimento de Jogos**.
+
+O trabalho tem finalidade didática: exercitar programação, lógica,
+organização de cenas e scripts, implementação de mecânicas e colaboração
+em equipe. Não foi desenvolvido com finalidade comercial.
+
+Esta declaração informa o propósito do projeto, mas **não representa uma
+licença formal de software**. O repositório não declara, por meio deste
+README, uma licença aberta específica. A utilização de recursos de
+terceiros permanece sujeita às respectivas condições e direitos de seus
+autores.
+
+## 📌 Status
+
+**Projeto concluído.** As funcionalidades descritas neste documento
+correspondem à versão final disponibilizada no repositório.
+
+------------------------------------------------------------------------
+
+Desenvolvido em equipe com **Godot Engine 4.7** e **GDScript**.
+
+**Projeto acadêmico --- Disciplina de Desenvolvimento de Jogos.**
