@@ -138,9 +138,9 @@ As alterações devem respeitar a separação de responsabilidades entre os inte
 - [x] Detecção de contato com o jogador.
 - [x] Indicador visual de dano.
 - [x] Comunicação do evento de dano por Signal.
-- [ ] Integração com o sistema de vida.
+- [x] Integração com o sistema de vida.
 - [ ] Implementação de itens coletáveis.
-- [ ] Implementação do HUD.
+- [x] Implementação do HUD.
 - [ ] Implementação de áudio.
 
 ---
